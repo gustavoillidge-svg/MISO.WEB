@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claridad de Costos - MISO</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        h1 { color: #4f46e5; border-bottom: 3px solid #4f46e5; padding-bottom: 10px; }
+        h2 { color: #1f2937; margin-top: 30px; }
+        .formula { background: #f3f4f6; padding: 15px; border-radius: 8px; font-family: monospace; margin: 15px 0; }
+        .tip { background: #eef2ff; border-left: 4px solid #4f46e5; padding: 15px; margin: 15px 0; }
+        .footer { text-align: center; margin-top: 50px; color: #6b7280; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Claridad de Costos</h1>
+    
+    <p>La claridad de costos es fundamental para entender cada peso que gastas en tu operación gastronómica. No se trata solo de sumar ingredientes, sino de tener visibilidad completa de todos los costos operativos.</p>
+    
+    <div class="tip">
+        <strong>💡 Consejo de Consultor:</strong> La claridad de costos revela oportunidades ocultas de ahorro que pasan desapercibidas en estados financieros tradicionales.
+    </div>
+    
+    <h2>Fórmula de Costo Total</h2>
+    <div class="formula">
+        Costo Total = Σ(Costos Directos) + Σ(Costos Indirectos)<br>
+        Excel: = SUMA(B2:B10) + SUMA(C2:C10)
+    </div>
+    
+    <h2>Componentes del Costo</h2>
+    
+    <h3>1. Costos Directos</h3>
+    <ul>
+        <li>Insumos y materia prima</li>
+        <li>Mermas y desperdicios</li>
+        <li>Empaques y presentación</li>
+    </ul>
+    
+    <h3>2. Costos Indirectos (Operativos)</h3>
+    <ul>
+        <li>Energía (gas, electricidad)</li>
+        <li>Agua</li>
+        <li>Mano de obra directa (cocineros)</li>
+        <li>Depreciación de equipos</li>
+        <li>Mantenimiento</li>
+    </ul>
+    
+    <h3>3. Costos Fijos (No asignables al plato)</h3>
+    <ul>
+        <li>Arriendo</li>
+        <li>Nómina administrativa</li>
+        <li>Marketing</li>
+        <li>Servicios administrativos</li>
+    </ul>
+    
+    <div class="tip">
+        <strong>⚠️ Error Común:</strong> Incluir arriendo o nómina administrativa en el costo del plato. Estos son gastos fijos que se pagan independientemente de cuántos platos vendas.
+    </div>
+    
+    <h2>Calculadora de Impacto Financiero</h2>
+    
+    <p>Para calcular la claridad de costos de un plato:</p>
+    
+    <div class="formula">
+        Margen Unitario = Precio de Venta - Costo Total<br>
+        Utilidad Mensual = Margen Unitario × Ventas Mensuales<br>
+        Food Cost % = (Costo Total ÷ Precio de Venta) × 100
+    </div>
+    
+    <h2>Benchmarks de la Industria</h2>
+    <ul>
+        <li><strong>Food Cost Saludable:</strong> 28% - 35%</li>
+        <li><strong>Margen de Utilidad Ideal:</strong> 65% - 72%</li>
+        <li><strong>Punto de Equilibrio:</strong> Costos Fijos ÷ Margen Unitario</li>
+    </ul>
+    
+    <h2>Acción Inmediata</h2>
+    <ol>
+        <li>Lista todos los ingredientes con cantidades exactas</li>
+        <li>Calcula mermas reales (no estimadas)</li>
+        <li>Suma costos de empaque y presentación</li>
+        <li>Asigna proporcionalmente los costos operativos</li>
+        <li>Verifica que tu food cost esté entre 28% y 35%</li>
+    </ol>
+    
+    <div class="footer">
+        <p><strong>MISO - Management & Intelligence Systems Optimization</strong></p>
+        <p>Powered by IRIS | Ingeniería de Rentabilidad Gastronómica</p>
+        <p>© 2024-2026 - Todos los derechos reservados</p>
+    </div>
+    
+    <script>
+        // Auto-print suggestion
+        window.onload = function() {
+            document.body.insertAdjacentHTML('beforeend', 
+                '<div style="position:fixed;bottom:20px;right:20px;">' +
+                '<button onclick="window.print()" style="background:#4f46e5;color:white;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-size:16px;">🖨️ Imprimir a PDF</button>' +
+                '</div>'
+            );
+        }
+    </script>
+</body>
+</html>
