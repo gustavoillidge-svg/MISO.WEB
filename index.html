@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#8b5cf6">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MISO">
+    
+    <!-- Splash Screens para iOS (Ejemplo de uno base, idealmente generar todos los tamaños) -->
+    <link rel="apple-touch-startup-image" href="./assets/images/logo_miso.png">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PDMNPMH9');</script>
+<!-- End Google Tag Manager -->
+
+    <meta name="description" content="Domina tu rentabilidad con MISO. La herramienta inteligente (Powered by IRIS) para costear recetas, calcular mermas y optimizar tu ingeniería de menú con el 8% de impoconsumo en Colombia.">
+    <meta name="keywords" content="Excel costeo recetas 2026, Calculadora de food cost, Formato escandallos gratis, Requisitos abrir restaurante Colombia, Mejor software restaurantes Medellín, POS barato, Sistema inventario cocina, Consultor gastronómico Bogotá, Eficiencia operativa">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MISO | Consultoría y Costeo de Restaurantes">
+    <meta property="og:description" content="Domina tu rentabilidad con MISO. La herramienta inteligente (Powered by IRIS) para costear recetas, calcular mermas y optimizar tu ingeniería de menú.">
+    <meta property="og:image" content="https://gustavoillidge-svg.github.io/MISO-WEB/assets/images/misoapp.png">
+    <meta property="og:url" content="https://gustavoillidge-svg.github.io/MISO-WEB/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MISO">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/images/misoapp.png">
+    <link rel="apple-touch-icon" href="./assets/images/misoapp.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MISO | Consultoría y Costeo de Restaurantes">
+     <meta name="twitter:description" content="Domina tu rentabilidad con MISO. La herramienta inteligente (Powered by IRIS) para costear recetas, calcular mermas y optimizar tu ingeniería de menú.">
+     <meta name="twitter:image" content="https://gustavoillidge-svg.github.io/MISO-WEB/assets/images/misoapp.png">
+      <title>MISO | Consultoría y Costeo de Restaurantes en Colombia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+     <link rel="manifest" href="./manifest.json">
+     <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="stylesheet" href="styles.css?v=4.0.0">
+     <link rel="stylesheet" href="./src/styles/main.css">
+     <script src="https://unpkg.com/dexie@4.0.10/dist/dexie.js" defer></script>
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-gray-50 min-h-screen antialiased">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PDMNPMH9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <!-- Sticky Header - Apple Style -->
+    <header class="sticky top-0 z-50 glassmorphism fluid-transition border-b border-gray-200/50 relative w-full">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo + MISO Text -->
+            <a href="#" data-action="view:home" class="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity">
+                <img src="./assets/images/logo_miso.png" alt="MISO" class="w-10 h-auto md:w-16">
+                <span class="text-xl md:text-2xl font-semibold text-gray-900 tracking-tight">MISO</span>
+            </a>
+            
+            <!-- NAVEGACIÓN PC: Separada lógicamente -->
+            <nav class="hidden md:flex items-center gap-1 lg:gap-4 ml-auto mr-4"> 
+                <button data-action="view:modulos" class="nav-tab text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 relative">Aprendizaje</button>
+                <button data-action="view:info" class="nav-tab text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 relative">Insights</button>
+                <button data-action="view:consultoria" class="nav-tab text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 relative">
+                    Consultoría
+                </button>
+                <button data-action="view:costeo" class="nav-tab text-sm font-medium text-gray-600 hover:text-gray-900 px-3 py-2 relative">Costeo</button>
+                <button id="auth-btn-desktop" data-action="modal:login" class="ml-2 bg-indigo-600 text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-indigo-700 transition-all transform hover:scale-105 shadow-sm">Ingresar / Registro</button>
+            </nav>
+
+            <!-- NAVEGACIÓN MÓVIL: Separada lógicamente -->
+            <div class="flex items-center gap-2 md:hidden">
+                <!-- Menú Hamburguesa Mobile -->
+                <button data-action="toggle:mobile-menu" class="p-2 rounded-xl hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menú Mobile (Top-Down) - v2.0 -->
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-2xl hidden transform -translate-y-4 opacity-0 transition-all duration-300 z-40">
+            <div class="p-6">
+                <nav class="flex flex-col gap-2">
+                    <button data-action="view:modulos;close:mobile-menu" class="text-base font-medium text-gray-700 py-3 px-4 rounded-xl hover:bg-gray-50 text-left active:bg-gray-100 transition-colors">Módulos de aprendizaje</button>
+                    <button data-action="view:info;close:mobile-menu" class="text-base font-medium text-gray-700 py-3 px-4 rounded-xl hover:bg-gray-50 text-left active:bg-gray-100 transition-colors">Información de interés</button>
+                    <button data-action="view:consultoria;close:mobile-menu" class="text-base font-medium text-gray-700 py-3 px-4 rounded-xl hover:bg-gray-50 text-left active:bg-gray-100 transition-colors">Consultoría</button>
+                    <button data-action="view:costeo;close:mobile-menu" class="text-base font-medium text-gray-700 py-3 px-4 rounded-xl hover:bg-gray-50 text-left active:bg-gray-100 transition-colors">Costeador Profesional</button>
+                    <button id="auth-btn-mobile" data-action="modal:login;close:mobile-menu" class="text-base font-bold text-indigo-700 py-3 px-4 rounded-xl bg-indigo-50 text-left active:bg-indigo-100 transition-colors flex items-center gap-3">
+                        <span>👤</span> <span id="auth-text-mobile">Mi Cuenta MISO</span>
+                    </button>
+                    <button id="installAppBtn" class="hidden w-full text-left px-4 py-4 mt-2 bg-indigo-50 text-indigo-700 rounded-2xl font-bold flex items-center gap-3 animate-pulse">
+                        <span class="text-xl">📥</span> Instalar MISO App
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-4">
+    
+        <section id="view-home" class="pestaña-contenido p-6 max-w-4xl mx-auto">
+            <div class="text-center py-6">
+                <img src="./assets/images/logo_miso.png" alt="MISO" class="w-40 md:w-64 h-auto mx-auto mb-6">
+                <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight mb-4">MISO</h1>
+                <p class="text-xl text-indigo-600 font-semibold mb-2">Ingeniería de Rentabilidad Gastronómica</p>
+                <p class="text-gray-500 max-w-2xl mx-auto">
+                    Optimización de sistemas de inteligencia para el control absoluto de márgenes y eficiencia operativa.
+                </p>
+            </div>
+
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-8 my-10 rounded-r-xl">
+                <h2 class="text-2xl font-bold text-indigo-900 mb-2">"El costo no es lo que pagas, es lo que dejas de ganar"</h2>
+                <p class="text-indigo-700">Costear profesionalmente separa a los entusiastas de los empresarios gastronómicos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div data-action="view:modulos" class="cursor-pointer p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all border-b-4 hover:border-b-indigo-500">
+                    <div class="text-3xl mb-3">🎓</div>
+                    <h3 class="font-bold text-lg">Módulos de Entrenamiento</h3>
+                    <p class="text-sm text-gray-500">+100 preguntas especializadas</p>
+                </div>
+
+                <div data-action="view:costeo" class="cursor-pointer p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all border-b-4 hover:border-b-green-500">
+                    <div class="text-3xl mb-3">📊</div>
+                    <h3 class="font-bold text-lg">Costeador Profesional</h3>
+                    <p class="text-sm text-gray-500">Calcula tus platos</p>
+                </div>
+
+                <div data-action="view:info" class="cursor-pointer p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all border-b-4 hover:border-b-amber-500">
+                    <div class="text-3xl mb-3">💡</div>
+                    <h3 class="font-bold text-lg">Insights</h3>
+                    <p class="text-sm text-gray-500">Sabiduría práctica</p>
+                </div>
+            </div>
+
+            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-8 my-10 rounded-r-xl">
+                <h2 class="text-2xl font-bold text-indigo-900 mb-2">"Creemos que el éxito de un restaurante no debería ser un misterio"</h2>
+                <p class="text-indigo-700 mb-4">En un mercado donde los costos suben y los márgenes se estrechan, la inteligencia es la única ventaja competitiva real. MISO existe para iluminar los puntos ciegos del back-office.</p>
+                <p class="text-indigo-700 font-semibold">"La inteligencia es el ingrediente que nunca puede falta"</p>
+            </div>
+        </section>
+
+        <!-- VIEW: Módulos de Aprendizaje -->
+        <section id="view-aprender" class="pestaña-contenido hidden p-4">
+
+            <!-- Learning Content -->
+            <div id="learning-content" class="bg-alt-2 py-4">
+                <!-- Module Navigation Bar -->
+                <nav class="mb-4 border-b border-gray-200">
+                    <div class="grid grid-cols-3 gap-2 pb-0 max-w-4xl mx-auto px-4 md:flex md:overflow-x-auto">
+                        <button data-module="1" id="tab-1" class="py-3 px-2 text-sm font-medium border-b-2 border-indigo-600 text-indigo-600 w-full">
+                            Insumos
+                        </button>
+                        <button data-module="2" id="tab-2" class="py-3 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 w-full">
+                            La Merma
+                        </button>
+                        <button data-module="3" id="tab-3" class="py-3 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 w-full">
+                            Elaborados
+                        </button>
+                        <button data-module="4" id="tab-4" class="py-3 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 w-full">
+                            Productos
+                        </button>
+                        <button data-module="5" id="tab-5" class="py-3 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 w-full">
+                            Pricing
+                        </button>
+                        <button data-module="6" id="tab-6" class="py-3 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 w-full">
+                            Matriz BCG
+                        </button>
+                        <button data-module="7" id="tab-7" class="py-3 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700 w-full">
+                            Claridad de Costos
+                        </button>
+                    </div>
+                </nav>
+                
+                <!-- Module 1: Los Insumos -->
+                <div id="module-1" class="module-content max-w-4xl mx-auto px-4">
+                    <div class="card-apple p-12 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-2">Estandarización de Insumos</h2>
+                        <p class="text-gray-600 mb-6">Gestión técnica del inventario base. Blindaje del centavo mediante la codificación precisa de materias primas.</p>
+                        
+                        <div class="bg-indigo-50 rounded-2xl border-l-4 border-indigo-400 p-4 mb-6">
+                            <p class="text-indigo-900 font-medium">💡 Consejo de Consultor: Siempre compra por peso (kg) en lugar de por unidades. Un proveedor puede darte 15 o 18 cebollas por kilo - el precio por kilo es tu referencia real.</p>
+                        </div>
+                        
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Fórmula Matemática:</h3>
+                        <p class="text-gray-700 mb-2 font-mono bg-gray-100 p-3 rounded-xl inline-block">Costo Unitario = Precio de Compra ÷ Cantidad Total</p>
+                        
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3 mt-4">Sintaxis en Excel:</h3>
+                        <div class="bg-gray-100 rounded-xl p-4 mb-4 font-mono text-sm flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-700">=B2/C2</p>
+                                <p class="text-gray-500 text-xs mt-1">// B2 = Precio, C2 = Cantidad total</p>
+                            </div>
+                            <button data-action="copy:formula" data-formula="=B2/C2" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors">
+                                📋 Copiar
+                            </button>
+                        </div>
+                        <div class="mt-8 flex justify-center gap-4">
+                            <button data-action="quiz:start" data-module="insumos" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                                🎯 Entrenar con MISO
+                            </button>
+<a href="INSUMOS.pdf" download="insumos.pdf" class="px-6 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-md hover:shadow-lg flex items-center gap-2">
+                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                 </svg>
+                                 ¡Aprende más!
+                             </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Module 2: La Merma -->
+                <div id="module-2" class="module-content hidden max-w-4xl mx-auto px-4">
+                    <div class="card-apple p-12 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-2">Control de Rendimientos y Mermas</h2>
+                        <p class="text-gray-600 mb-4">Análisis de mermas técnicas y operativas. Optimización del aprovechamiento real para maximizar el margen de contribución.</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-2">
+                            <li><strong>Peso Bruto:</strong> Lo que compras y pagas</li>
+                            <li><strong>Peso Neto:</strong> Lo que realmente usas después de limpiar, pelar o cocer</li>
+                            <li><strong>Factor de Rendimiento:</strong> El porcentaje que es realmente usable (100% - % merma)</li>
+                        </ul>
+                        
+                        <div class="bg-indigo-50 rounded-2xl border-l-4 border-indigo-400 p-4 mb-6">
+                            <p class="text-indigo-900 font-medium">💡 Consejo de Consultor: Una cebolla pierde en promedio ~15% al pelarla. El tomate pierde cerca del ~10%. Las carnes rojas pierden al rededor de ~20% al sofreírse. Calcular y registrar tus mermas son la mejor forma de controlar el desperdicio.</p>
+                        </div>
+                        
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Fórmula:</h3>
+                        <p class="text-gray-700 mb-2 font-mono bg-gray-100 p-3 rounded-xl inline-block">Costo Real = Costo Unitario ÷ % de Rendimiento</p>
+                        
+                        <div class="bg-gray-100 rounded-xl p-4 mb-4 font-mono text-sm flex items-center justify-between mt-4">
+                            <div>
+                                <p class="text-gray-700">=B2/(D2/100)</p>
+                                <p class="text-gray-500 text-xs mt-1">// B2 = Costo, D2 = % Rendimiento</p>
+                            </div>
+                            <button data-action="copy:formula" data-formula="=B2/(D2/100)" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors">
+                                📋 Copiar
+                            </button>
+                        </div>
+                        <div class="mt-8 flex justify-center gap-4">
+                            <button data-action="quiz:start" data-module="mermas" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                                🎯 Entrenar con MISO
+                            </button>
+<a href="LA MERMA.pdf" download="mermas.pdf" class="px-6 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-md hover:shadow-lg flex items-center gap-2">
+                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                 </svg>
+                                 ¡Aprende más!
+                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3: Insumos Elaborados -->
+                <div id="module-3" class="module-content hidden max-w-4xl mx-auto px-4">
+                    <div class="card-apple p-12 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-2">Arquitectura de Elaborados</h2>
+                        <p class="text-gray-600 mb-4">Ingeniería de sub-recetas y procesos intermedios. Trazabilidad total del costo en preparaciones complejas.</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-2">
+                            <li>Salsa boloñesa</li>
+                            <li>Fondo de cocina</li>
+                            <li>Base de ajo</li>
+                            <li>Masa de tortilla</li>
+                        </ul>
+                        
+                        <div class="bg-indigo-50 rounded-2xl border-l-4 border-indigo-400 p-4 mb-6">
+                            <p class="text-indigo-900 font-medium">💡 Consejo de Consultor: Una salsa que rindé 2 litros y cuesta $8,000 tiene un costo de $1.000 por cada 250ml que uses en un plato.</p>
+                        </div>
+                        
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Fórmula:</h3>
+                        <p class="text-gray-700 mb-2 font-mono bg-gray-100 p-3 rounded-xl inline-block">Costo por porción = Σ(Costo de Insumos) ÷ Rendimiento</p>
+                        
+                        <div class="bg-gray-100 rounded-xl p-4 mb-4 font-mono text-sm flex items-center justify-between mt-4">
+                            <div>
+                                <p class="text-gray-700">=SUM(B2:B10)/C2</p>
+                                <p class="text-gray-500 text-xs mt-1">// Suma ingredientes ÷ rendimiento</p>
+                            </div>
+                            <button data-action="copy:formula" data-formula="=SUM(B2:B10)/C2" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors">
+                                📋 Copiar
+                            </button>
+                        </div>
+                        <div class="mt-8 flex justify-center gap-4">
+                            <button data-action="quiz:start" data-module="elaborados" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                                🎯 Entrenar con MISO
+                            </button>
+<a href="ELABORADOS.pdf" download="elaborados.pdf" class="px-6 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-md hover:shadow-lg flex items-center gap-2">
+                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                 </svg>
+                                 ¡Aprende más!
+                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4: Productos de Venta -->
+                <div id="module-4" class="module-content hidden max-w-4xl mx-auto px-4">
+                    <div class="card-apple p-12 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-2">Portafolio de Productos</h2>
+                        <p class="text-gray-600 mb-4">Configuración del inventario de ventas. Sincronización de costos directos con la oferta comercial.</p>
+                        
+                        <div class="bg-indigo-50 rounded-2xl border-l-4 border-indigo-400 p-4 mb-6">
+                            <p class="text-indigo-900 font-medium">💡 Consejo de Consultor: Un food cost del 25-35% suele ser saludable. Si tu plato cuesta $10,000 y quieres 30% de food cost, el precio debe ser ~$33,000.</p>
+                        </div>
+                        
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Fórmula:</h3>
+                        <p class="text-gray-700 mb-2 font-mono bg-gray-100 p-3 rounded-xl inline-block">Precio Sugerido = Costo Total ÷ (1 - % Margen)</p>
+                        
+                        <div class="bg-gray-100 rounded-xl p-4 mb-4 font-mono text-sm flex items-center justify-between mt-4">
+                            <div>
+                                <p class="text-gray-700">=B2/(1-C2)</p>
+                                <p class="text-gray-500 text-xs mt-1">// B2=Costo, C2=Margen (0.30)</p>
+                            </div>
+                            <button data-action="copy:formula" data-formula="=B2/(1-C2)" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors">
+                                📋 Copiar
+                            </button>
+                        </div>
+                        <div class="mt-8 flex justify-center gap-4">
+                            <button data-action="quiz:start" data-module="productos" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                                🎯 Entrenar con MISO
+                            </button>
+<a href="PRODUCTOS.pdf" download="productos.pdf" class="px-6 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-md hover:shadow-lg flex items-center gap-2">
+                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                 </svg>
+                                 ¡Aprende más!
+                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5: Pricing -->
+                <div id="module-5" class="module-content hidden max-w-4xl mx-auto px-4">
+                    <div class="card-apple p-12 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-2">Estrategias de Pricing</h2>
+                        <p class="text-gray-600 mb-4">Captura de valor y gestión de impuestos (Impoconsumo 8%). Modelado de precios basado en rentabilidad neta, no solo en costo.</p>
+                        
+                        <div class="bg-indigo-50 rounded-2xl border-l-4 border-indigo-400 p-4 mb-6">
+                            <p class="text-indigo-900 font-medium">💡 Diferencia clave: El precio final con impuesto es 8% mayor, pero tu utilidad bruta permanece igual porque el impuesto es un cargo al cliente, no un costo para ti.</p>
+                        </div>
+
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Margen vs Markup:</h3>
+                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-2">
+                            <li><strong>Margen:</strong> (Precio - Costo) ÷ Precio</li>
+                            <li><strong>Markup:</strong> (Precio - Costo) ÷ Costo</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3 mt-4">Impoconsumo:</h3>
+                        <p class="text-gray-700 mb-2 font-mono bg-gray-100 p-3 rounded-xl inline-block">Precio Final = Precio Sugerido × 1.08</p>
+                        
+                        <div class="bg-gray-100 rounded-xl p-4 mb-4 font-mono text-sm flex items-center justify-between mt-4">
+                            <div>
+                                <p class="text-gray-700">=B2*1.08</p>
+                                <p class="text-gray-500 text-xs mt-1">// Agregar 8% impuesto</p>
+                            </div>
+                            <button data-action="copy:formula" data-formula="=B2*1.08" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors">
+                                📋 Copiar
+                            </button>
+                        </div>
+                        <div class="mt-8 flex justify-center gap-4">
+                            <button data-action="quiz:start" data-module="pricing" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                                🎯 Entrenar con MISO
+                            </button>
+<a href="PRICING.pdf" download="pricing.pdf" class="px-6 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-md hover:shadow-lg flex items-center gap-2">
+                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                 </svg>
+                                 ¡Aprende más!
+                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 6: Matriz BCG -->
+                <div id="module-6" class="module-content hidden max-w-4xl mx-auto px-4">
+                    <div class="card-apple p-12 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-2">Ingeniería de Menú (Matriz BCG)</h2>
+                        <p class="text-gray-600 mb-4">Análisis avanzado del inventario de ventas. Clasificación estratégica de platos para la optimización del ROI (Retorno de Inversión) de la carta.</p>
+                        <ul class="list-disc list-inside text-gray-600 mb-4 space-y-2">
+                            <li><strong>Eje Y (Vertical):</strong> Rentabilidad ↑</li>
+                            <li><strong>Eje X (Horizontal):</strong> Ventas →</li>
+                        </ul>
+
+                        <!-- Matriz BCG -->
+                        <div class="mb-8">
+                            <div class="bcg-matrix">
+                                
+                                <span class="bcg-axis-label-x">Altas Ventas →</span>
+                                <span class="bcg-range-label bcg-range-high-y">Alta</span>
+                                <span class="bcg-range-label bcg-range-low-y">Baja</span>
+                                <span class="bcg-range-label bcg-range-high-x">Alta</span>
+                                <span class="bcg-range-label bcg-range-low-x">Baja</span>
+                                <div class="bcg-axis-y"></div>
+                                <div class="bcg-axis-x"></div>
+                                
+                                <div class="bcg-cell bcg-enigma" data-action="bcg:open">
+                                    <div class="bcg-reveal">
+                                        <span class="reveal-title">🎯 Estrategia ENIGMA</span>
+                                        <span class="reveal-text">Son platos que te dejan mucho dinero por cada unidad vendidas, pero que el cliente casi no pide. Estrategia: Investigar por qué no se vende (¿mal nombre?, ¿poca foto?) y lanzarlos con campañas de marketing.</span>
+                                    </div>
+                                    <span class="text-2xl mb-2">❓</span>
+                                    <h4 class="font-semibold text-purple-700">ENIGMA</h4>
+                                    <p class="text-xs text-purple-600">Baja venta<br/>Alta rentabilidad</p>
+                                </div>
+                                <div class="bcg-cell bcg-estrella" data-action="bcg:open">
+                                    <div class="bcg-reveal">
+                                        <span class="reveal-title">🎯 Estrategia ESTRELLA</span>
+                                        <span class="reveal-text">Son los líderes de tu cocina. Tienen un margen de utilidad excelente y los clientes los piden constantemente. Estrategia: Mantener la calidad a toda costa y darles visibilidad prioritaria.</span>
+                                    </div>
+                                    <span class="text-2xl mb-2">⭐</span>
+                                    <h4 class="font-semibold text-yellow-700">ESTRELLA</h4>
+                                    <p class="text-xs text-yellow-600">Alta venta<br/>Alta rentabilidad</p>
+                                </div>
+                                <div class="bcg-cell bcg-perro" data-action="bcg:open">
+                                    <div class="bcg-reveal">
+                                        <span class="reveal-title">🎯 Estrategia PERRO</span>
+                                        <span class="reveal-text">Productos que no rotan y que, cuando se venden, no aportan una ganancia significativa. Consumen espacio en inventario y tiempo de preparación innecesario. Estrategia: Eliminarlos del menú o transformarlos radicalmente.</span>
+                                    </div>
+                                    <span class="text-2xl mb-2">🐕</span>
+                                    <h4 class="font-semibold text-red-700">PERRO</h4>
+                                    <p class="text-xs text-red-600">Baja venta<br/>Baja rentabilidad</p>
+                                </div>
+                                <div class="bcg-cell bcg-vaca" data-action="bcg:open">
+                                    <div class="bcg-reveal">
+                                        <span class="reveal-title">🎯 Estrategia VACA</span>
+                                        <span class="reveal-text">Son productos muy populares que generan flujo de caja constante, pero dejan poco margen (posiblemente por costos de insumos altos). Estrategia: No se eliminan porque atraen gente, pero deben ser re-costeados o reducir sus porciones para subir el margen.</span>
+                                    </div>
+                                    <span class="text-2xl mb-2">🐄</span>
+                                    <h4 class="font-semibold text-blue-700">VACA</h4>
+                                    <p class="text-xs text-blue-600">Alta venta<br/>Baja rentabilidad</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-yellow-100 border border-yellow-300 rounded-xl p-4">
+                                <h4 class="font-semibold text-yellow-700">⭐ ESTRELLA</h4>
+                                <p class="text-yellow-800 text-sm">Mantener y potenciar</p>
+                            </div>
+                            <div class="bg-blue-100 border border-blue-300 rounded-xl p-4">
+                                <h4 class="font-semibold text-blue-700">🐄 VACA</h4>
+                                <p class="text-blue-800 text-sm">Subir precios o optimizar</p>
+                            </div>
+                            <div class="bg-purple-100 border border-purple-300 rounded-xl p-4">
+                                <h4 class="font-semibold text-purple-700">❓ ENIGMA</h4>
+                                <p class="text-purple-800 text-sm">Promocionar</p>
+                            </div>
+                            <div class="bg-red-100 border border-red-300 rounded-xl p-4">
+                                <h4 class="font-semibold text-red-700">🐕 PERRO</h4>
+                                <p class="text-red-800 text-sm">Eliminar o reestructurar</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-4">
+                            <p class="text-amber-800 text-sm font-medium">💡 EXCEPCIÓN: Un Plato Perro puede ser necesario para el concepto del restaurante (ej: bandeja paisa para integridad del menú). La diferencia entre un software básico y la consultoría de MISO es que nosotros analizamos si debemos eliminarlo o reestructurarlo.</p>
+                        </div>
+                        <div class="mt-8 flex justify-center gap-4">
+                            <button data-action="quiz:start" data-module="bcg" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                                🎯 Entrenar con MISO
+                            </button>
+<a href="MATRIZ BCG.pdf" download="bcg.pdf" class="px-6 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-colors shadow-md hover:shadow-lg flex items-center gap-2">
+                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                 </svg>
+                                 ¡Aprende más!
+                             </a>
+                        </div>
+                     </div>
+                </div>
+
+                <!-- Module 7: Claridad de Costos -->
+                <div id="module-7" class="module-content hidden max-w-4xl mx-auto px-4">
+                    <div class="card-apple p-12 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-2">Claridad de Costos</h2>
+                        <p class="text-gray-600 mb-6">Visualización completa del costo real. Entiende cada peso que gastas, su composición y el impacto directo en tu margen de utilidad.</p>
+                        
+                        <div class="bg-slate-50 rounded-2xl border-l-4 border-slate-500 p-4 mb-6">
+                            <p class="text-slate-900 font-medium">💡 Insight clave: El costo de un plato va mucho más allá de la suma de ingredientes. Debes incluir mermas, desperdicios, costos operativos y el valor del tiempo de tu equipo para tener claridad real.</p>
+                        </div>
+                        
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3 mt-6">Fórmula de Costo Total:</h3>
+                        <p class="text-gray-700 mb-4 font-mono bg-slate-100 p-4 rounded-xl inline-block border border-slate-200">Costo Total = Costo Insumos + Costo Mermas + Costo Operativo</p>
+                        
+                        <div class="mt-8 mb-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Calculadora de Impacto Financiero:</h3>
+                            <div class="bg-gradient-to-br from-slate-50 to-indigo-50 rounded-2xl p-6 border border-slate-200">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-slate-700 mb-2">Costo del Plato (COP)</label>
+                                        <input type="number" id="cost-clarity-input" value="10000" min="0" step="100" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-slate-700 mb-2">Precio de Venta (COP)</label>
+                                        <input type="number" id="price-clarity-input" value="30000" min="0" step="100" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-slate-700 mb-2">Ventas Mensuales (unidades)</label>
+                                        <input type="number" id="sales-clarity-input" value="300" min="0" step="10" class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-white transition-colors">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white rounded-xl p-5 border-2 border-indigo-100 shadow-sm">
+                                        <p class="text-sm text-gray-500 mb-1">Margen Unitario</p>
+                                        <p id="unit-margin-display" class="text-3xl font-bold text-indigo-600">$20,000</p>
+                                        <p id="margin-percent-display" class="text-sm text-gray-600 mt-1">66.7%</p>
+                                    </div>
+                                    <div class="bg-white rounded-xl p-5 border-2 border-green-100 shadow-sm">
+                                        <p class="text-sm text-gray-500 mb-1">Utilidad Mensual</p>
+                                        <p id="monthly-profit-display" class="text-3xl font-bold text-green-600">$6,000,000</p>
+                                        <p id="food-cost-display" class="text-sm text-gray-600 mt-1">Food Cost: 33.3%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-indigo-50 rounded-2xl border-l-4 border-indigo-400 p-4 mb-6">
+                            <h4 class="font-semibold text-indigo-900 mb-2">Impacto en tu Negocio:</h4>
+                            <ul class="list-disc list-inside text-indigo-900 space-y-1 text-sm">
+                                <li>Un margen del 65-75% es saludable para la mayoría de restaurantes</li>
+                                <li>Si tu food cost supera el 35%, estás dejando utilidades en el plato</li>
+                                <li>Pequeños ajustes de precio (+10%) pueden duplicar tu utilidad mensual</li>
+                                <li>Conoce el punto de equilibrio: Costos Fijos ÷ Margen Unitario</li>
+                            </ul>
+                        </div>
+
+                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Sintaxis en Excel - Análisis de Rentabilidad:</h3>
+                        <div class="bg-gray-100 rounded-xl p-4 mb-4 font-mono text-sm flex items-center justify-between">
+                            <div class="flex-1">
+                                <p class="text-gray-700">=B2-C2</p>
+                                <p class="text-gray-500 text-xs mt-1">// B2 = Precio venta, C2 = Costo total</p>
+                            </div>
+                            <button data-action="copy:formula" data-formula="=B2-C2" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors ml-4">
+                                📋 Copiar
+                            </button>
+                        </div>
+                        <div class="bg-gray-100 rounded-xl p-4 mb-4 font-mono text-sm flex items-center justify-between">
+                            <div class="flex-1">
+                                <p class="text-gray-700">=D2*E2</p>
+                                <p class="text-gray-500 text-xs mt-1">// D2 = Margen unitario, E2 = Ventas mensuales</p>
+                            </div>
+                            <button data-action="copy:formula" data-formula="=D2*E2" class="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors ml-4">
+                                📋 Copiar
+                            </button>
+                        </div>
+                        
+                        <div class="mt-8 flex justify-center">
+                            <button data-action="quiz:start" data-module="claridad" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-bold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                                🎯 Entrenar con MISO
+                            </button>
+                        </div>
+                        
+                        <!-- Calculator Script -->
+                        <script>
+                        (function() {
+                            const costInput = document.getElementById('cost-clarity-input');
+                            const priceInput = document.getElementById('price-clarity-input');
+                            const salesInput = document.getElementById('sales-clarity-input');
+                            
+                            if (costInput && priceInput && salesInput) {
+                                function calcularClaridad() {
+                                    const costo = parseFloat(costInput.value) || 0;
+                                    const precio = parseFloat(priceInput.value) || 0;
+                                    const ventas = parseInt(salesInput.value) || 0;
+                                    
+                                    const margenUnitario = precio - costo;
+                                    const utilidadMensual = margenUnitario * ventas;
+                                    const foodCost = precio > 0 ? ((costo / precio) * 100).toFixed(1) : 0;
+                                    const margenPorcentaje = precio > 0 ? ((margenUnitario / precio) * 100).toFixed(1) : 0;
+                                    
+                                    document.getElementById('unit-margin-display').textContent = 
+                                        '$' + margenUnitario.toLocaleString('es-CO', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+                                    document.getElementById('margin-percent-display').textContent = margenPorcentaje + '%';
+                                    document.getElementById('monthly-profit-display').textContent = 
+                                        '$' + utilidadMensual.toLocaleString('es-CO', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+                                    document.getElementById('food-cost-display').textContent = 'Food Cost: ' + foodCost + '%';
+                                }
+                                
+                                costInput.addEventListener('input', calcularClaridad);
+                                priceInput.addEventListener('input', calcularClaridad);
+                                salesInput.addEventListener('input', calcularClaridad);
+                                
+                                // Initial calculation on module show
+                                calcularClaridad();
+                            }
+                        })();
+                        </script>
+                    </div>
+                </div>
+
+             </section>
+
+        <!-- VIEW: Información de interés -->
+        <div id="view-info" class="pestaña-contenido hidden">
+            <!-- Errores Comunes Section -->
+            <section id="errores-comunes" class="bg-alt-1 py-16 px-4">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-semibold text-gray-900 mb-4 text-center">Errores Comunes en Costeo</h2>
+                    <p class="text-gray-600 text-center mb-10 max-w-2xl mx-auto">Estos errores pueden costing tu restaurante miles de pesos. Evítalos.</p>
+                    
+                    <!-- Error 1: Insumos -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+                            <h3 class="text-lg font-semibold text-gray-900">Insumos</h3>
+                        </div>
+                        <div class="error-grid">
+                            <div class="error-cell cell-bad">
+                                <p class="cell-title bad-text">❌ Error</p>
+                                <p class="text-gray-700">Costeo por unidades o bultos sin pesaje.</p>
+                            </div>
+                            <div class="error-cell cell-good">
+                                <p class="cell-title good-text">✅ Estándar MISO</p>
+                                <p class="text-gray-700">Estandarización a gramo/ml con pesaje sistemático.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Error 2: Impoconsumo -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+                            <h3 class="text-lg font-semibold text-gray-900">Impoconsumo</h3>
+                        </div>
+                        <div class="error-grid">
+                            <div class="error-cell cell-bad">
+                                <p class="cell-title bad-text">❌ Error</p>
+                                <p class="text-gray-700">Restar el 8% de la utilidad bruta.</p>
+                            </div>
+                            <div class="error-cell cell-good">
+                                <p class="cell-title good-text">✅ Estándar MISO</p>
+                                <p class="text-gray-700">Sumar el 8% al precio final como recaudo estatal.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Error 3: Gastos -->
+                    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden mb-6">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+                            <h3 class="text-lg font-semibold text-gray-900">Gastos</h3>
+                        </div>
+                        <div class="error-grid">
+                            <div class="error-cell cell-bad">
+                                <p class="cell-title bad-text">❌ Error</p>
+                                <p class="text-gray-700">Incluir arriendo o nómina en el costo del plato.</p>
+                            </div>
+                            <div class="error-cell cell-good">
+                                <p class="cell-title good-text">✅ Estándar MISO</p>
+                                <p class="text-gray-700">Separar Costo de Producto (Variable) de Gastos Operativos (Fijos).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Insights Section -->
+            <section id="insights" class="bg-alt-2 py-16 px-4">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-semibold text-gray-900 mb-4 text-center">Insights de Consultoría</h2>
+                    <p class="text-gray-600 text-center mb-10 max-w-2xl mx-auto">Sabiduría práctica basada en experiencia real.</p>
+                    
+                    <!-- 3 Grandes Pilares - Featured Content -->
+                    <div class="grid grid-cols-1 gap-6 mb-10">
+                        <!-- Pilar 1: La Trampa del Plato que Más Sale -->
+                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-8 border border-indigo-100">
+                            <div class="flex items-start gap-4">
+                                <div class="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-2xl text-white">⭐</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">La trampa del plato que más sale</h3>
+                                    <p class="text-gray-600 mb-4">¿Tu restaurante está lleno pero no deja utilidades? Aplicamos la Matriz BCG para identificar platos Perro, Enigma, Vaca y Estrella.</p>
+                                    <a href="#learning-content" class="text-indigo-600 font-medium hover:underline hidden">Explorar Módulo BCG →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pilar 2: Costo Real vs Costo de Compra -->
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 border border-green-100">
+                            <div class="flex items-start gap-4">
+                                <div class="w-14 h-14 bg-green-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-2xl text-white">📉</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Costo Real vs. Costo de Compra</h3>
+                                    <p class="text-gray-600 mb-4">Entiende por qué el precio de la plaza no es el precio del plato. Domina la optimización de mermas y el rendimiento real de tus insumos.</p>
+                                    <a href="#learning-content" class="text-green-600 font-medium hover:underline hidden">Ver Módulo de Mermas →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pilar 3: Actualización por Inflación -->
+                        <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 border border-amber-100">
+                            <div class="flex items-start gap-4">
+                                <div class="w-14 h-14 bg-amber-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                                    <span class="text-2xl text-white">📈</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Actualización por Inflación</h3>
+                                    <p class="text-gray-600 mb-4">En 2024-2025 el Food Cost en Colombia subió del 35% al 44%. Usa nuestras plantillas de actualización masiva de precios para proteger tu margen de ganancia.</p>
+                                    <a href="#learning-content" class="text-amber-600 font-medium hover:underline hidden">Aprende Pricing →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Existing Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card-apple p-8 fluid-transition iris-hover">
+                            <div class="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center mb-4">
+                                <span class="text-2xl">🎯</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Factor de Seguridad del 5%</h3>
+                            <p class="text-gray-600 text-sm">Siempre agrega 5% al costo de ingredientes para cubrir condimentos, desperdicios invisibles y variaciones de poids. Un plato que cost $10,000 debe presupuestarse en $10,500.</p>
+                        </div>
+                        
+                        <div class="card-apple p-8 fluid-transition iris-hover">
+                            <div class="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
+                                <span class="text-2xl">🥚</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Pesar el Huevo</h3>
+                            <p class="text-gray-600 text-sm">Un huevo mediano pesa ~50g, uno grande ~60g, uno jumbo ~70g. En recetas con muchos huevos, esta diferencia representa miles de pesos. PESA SIEMPRE.</p>
+                        </div>
+                        
+                        <div class="card-apple p-8 fluid-transition iris-hover">
+                            <div class="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
+                                <span class="text-2xl">📊</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Precio Psicológico .900</h3>
+                            <p class="text-gray-600 text-sm">En Colombia, precios terminados en .900 causan percepción de descuento. $29,900 se siente más barato que $30,000 aunque la diferencia real sea solo $100.</p>
+                        </div>
+                        
+                        <div class="card-apple p-8 fluid-transition iris-hover">
+                            <div class="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center mb-4">
+                                <span class="text-2xl">🐕</span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">El Plato Perro</h3>
+                            <p class="text-gray-600 text-sm">Un plato "perro" (baja venta + baja rentabilidad) ocupa espacio en tu menú y consume recursos sin generar valor. Elimínalo.</p>
+                        </div>
+                    </div>
+
+                    <!-- Botón Descargar Plantilla -->
+                    <div class="mt-12 text-center">
+                        <a href="./FormatoCosteoMiso.xlsx" download="FormatoCosteoMiso.xlsx" 
+                           class="inline-flex items-center gap-3 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all shadow-lg hover:shadow-xl">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            Descargar Plantilla de Costeo MISO
+                        </a>
+                        <p class="text-gray-500 text-sm mt-3">Formato Excel listo para importar datos y calcular costos</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- VIEW: Consultoría Personalizada -->
+        <div id="view-consultoria" class="pestaña-contenido hidden">
+            <section id="auditoria" class="bg-alt-1 py-16 px-4">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-semibold text-gray-900 mb-4 text-center">Auditoría de Operaciones y Finanzas Gastronómicas</h2>
+                    <p class="text-gray-600 text-center mb-10 max-w-2xl mx-auto">Solicite una intervención estratégica de Greenhole Insightful Joint Holdings para diagnosticar puntos de fuga en su flujo de caja.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Solicitar Consultoría -->
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdjH9EABaI8dwaJRMQ08fr4BvHjy2K7sc3rJ0vTZgfF_r_SuA/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="card-apple p-8 fluid-transition iris-hover block" style="backdrop-filter: blur(10px);">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-2xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Solicitar Consultoría</h3>
+                            <p class="text-gray-600 text-sm mb-3">Agenda tu sesión de consultoría especializada.</p>
+                            <span class="text-indigo-600 text-sm font-medium hover:underline">MISO Optimization Pro</span>
+                        </a>
+                        
+                        <!-- Recursos Educativos (Deshabilitado) -->
+                        <div class="card-apple p-8 opacity-60 grayscale cursor-not-allowed relative">
+                            <div class="absolute top-2 right-2">
+                                <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs font-medium rounded-full">En desarrollo</span>
+                            </div>
+                            <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center mb-4">
+                                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Recursos Educativos</h3>
+                            <p class="text-gray-600 text-sm">Accede a guías, plantillas y herramientas adicionales.</p>
+                            <p class="text-gray-400 text-xs italic mt-2">Sección en construcción. Disponible en próxima actualización.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Nuestra Filosofía Section -->
+            <section id="filosofia" class="bg-alt-2 py-16 px-4">
+                <div class="max-w-5xl mx-auto">
+                    <!-- Section Title -->
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 tracking-tight mb-4">Nuestra Filosofía</h2>
+                        <p class="text-gray-500 text-lg">El origen: una estructura de inteligencia</p>
+                    </div>
+                    
+                    <!-- IRIS: El Cerebro del Sistema -->
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-12">
+                        <div class="flex-shrink-0 w-full md:w-36 flex justify-center">
+                            <svg viewBox="0 0 100 100" width="80" height="80" xmlns="http://www.w3.org/2000/svg" class="iris-icon-vector">
+                                <defs>
+                                    <mask id="ringMaskPhilosophy">
+                                        <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="5.5" />
+                                    </mask>
+                                    <style>
+                                        .spin-philosophy { transform-origin: 50px 50px; animation: rotate 18s linear infinite; }
+                                    </style>
+                                </defs>
+                                <g mask="url(#ringMaskPhilosophy)" class="spin-philosophy">
+                                    <foreignObject x="0" y="0" width="100" height="100">
+                                        <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(from 200deg, #673AB7, #3F51B5, #00BCD4, #4CAF50, #FFC107, #FF9800, #9C27B0, #673AB7);"></div>
+                                    </foreignObject>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="flex-1 text-left w-full">
+                            <h3 class="text-xl font-bold text-gray-800 tracking-wide mb-3">IRIS: El Cerebro del Sistema</h3>
+                            <p class="text-gray-600 leading-relaxed">En el núcleo de nuestra tecnología late IRIS (Insightful Restaurant Intelligence System). IRIS es mucho más que un código; es el experto, la raíz de toda nuestra industria y el oráculo que lo sabe todo sobre la operación. Como una inteligencia especializada con años de experiencia real en el calor de las cocinas y en la frialdad de las finanzas, IRIS es el motor que potencia cada cálculo, cada análisis de Matriz BCG y cada optimización de costo. Si MISO es el vehículo, IRIS es el motor de alta precisión que lo conduce.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- MISO: La Base Perfecta -->
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 mb-12">
+                        <div class="flex-shrink-0 w-full md:w-36 flex justify-center">
+                            <img src="./assets/images/logo_miso.png" alt="MISO" class="w-36 h-auto drop-shadow-lg">
+                        </div>
+                        <div class="flex-1 text-left w-full">
+                            <h3 class="text-xl font-bold text-gray-800 tracking-wide mb-3">MISO: La Base Perfecta</h3>
+                            <p class="text-gray-600 leading-relaxed">MISO es la manifestación pública de este poder. Inspirado en la esencia de la cocina, donde una base sólida define el éxito de cualquier plato, MISO es la plataforma diseñada para que el restaurantero tome el control. Bajo el concepto de Management & Intelligence Systems Optimization, MISO traduce la complejidad algorítmica de IRIS en una interfaz simple, fluida y poderosa. Es la herramienta que permite a cualquier chef o dueño de negocio ver su operación con una claridad absoluta, desde el proveedor hasta el margen neto.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Vision Statement -->
+                    <div class="mt-16 text-center px-8 py-8 bg-gray-900 rounded-3xl border border-gray-700">
+                        <p class="text-white text-xl md:text-2xl font-light italic mb-4">"Creemos que el éxito de un restaurante no debería ser un misterio."</p>
+                        <p class="text-gray-300">En un mercado donde los costos suben y los márgenes se estrechan, la inteligencia es la única ventaja competitiva real. MISO existe para iluminar los puntos ciegos del back-office.</p>
+                        <p class="text-teal-400 font-semibold mt-6 text-lg">"La inteligencia es el ingrediente que nunca puede faltar."</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VIEW: Costeador Profesional -->
+        <section id="view-costeo" class="pestaña-contenido hidden p-4">
+            <div id="costeo-content">
+                <!-- Pestañas -->
+                <div class="max-w-4xl mx-auto mb-4">
+                    <div class="flex border-b border-gray-200">
+                        <button id="tab-insumos-elaborados" class="tab-btn px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700" onclick="switchCosteoTab('insumos-elaborados')">📦 Insumos Elaborados</button>
+                        <button id="tab-productos-venta" class="tab-btn px-6 py-3 text-sm font-medium text-indigo-600 border-b-2 border-indigo-600 active" onclick="switchCosteoTab('productos-venta')">💰 Productos para la Venta</button>
+                    </div>
+                </div>
+
+                <!-- Contenido: Insumos Elaborados -->
+                <div id="tab-content-insumos-elaborados" class="tab-content hidden">
+                    <!-- A. Cabecera de Configuración -->
+                    <div class="card-apple p-6 mb-6 max-w-4xl mx-auto">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">📝 Nombre y Rendimiento</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nombre de la Receta</label>
+                                <input type="text" id="recipe-name" placeholder="Ej: Salsa de Tomate" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Rendimiento Total</label>
+                                <input type="number" id="recipe-yield" value="1000" min="1" placeholder="gramos/ml totales" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Unidad de Medida:</label>
+                                <select id="recipe-unit" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
+                                    <option value="g">Gramos (g)</option>
+                                    <option value="ml">Mililitros (ml)</option>
+                                    <option value="kg">Kilogramos (kg)</option>
+                                    <option value="L">Litros (L)</option>
+                                    <option value="unid">Unidades</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Cantidad por Porción</label>
+                                <input type="number" id="recipe-portion-size" value="100" min="1" placeholder="gramos/ml por porción" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B. Listado de Insumos -->
+                    <div class="card-apple p-6 mb-6 max-w-4xl mx-auto">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-bold text-gray-900">📦 Insumos</h2>
+                            <button id="btn-add-recipe-insumo" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-semibold transition-colors flex items-center gap-2">
+                                <span>+</span> Añadir Insumo
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full" id="recipe-insumos-table">
+                                <thead>
+                                    <tr class="text-left text-sm text-gray-500 border-b border-gray-200">
+                                        <th class="pb-3 font-medium">Insumo</th>
+                                        <th class="pb-3 font-medium w-32">Cantidad</th>
+                                        <th class="pb-3 font-medium w-24">Unidad</th>
+                                        <th class="pb-3 font-medium w-32">Costo Unit.</th>
+                                        <th class="pb-3 font-medium w-32">Subtotal</th>
+                                        <th class="pb-3 w-12"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recipe-insumos-body">
+                                    <tr class="recipe-insumo-default-row" style="border-bottom: 1px solid #f3f4f6;">
+                                        <td colspan="6" class="text-center" style="color: #9ca3af; padding-top: 4px; padding-bottom: 4px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4">💾 Los cambios se guardan automáticamente</p>
+                    </div>
+
+                    <!-- C. Rendimiento -->
+                    <div class="card-apple p-6 max-w-4xl mx-auto border-2 border-indigo-200">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">📊 Rendimiento</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Costos -->
+                            <div style="background-color: #f8fafc; border-radius: 16px; padding: 16px;">
+                                <h3 class="font-semibold text-gray-700 mb-3">Costos</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Costo Total Insumos:</span>
+                                        <span id="recipe-cti-display" class="font-semibold">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between border-t border-gray-200 pt-2">
+                                        <span class="font-semibold text-gray-800">Costo Unitario:</span>
+                                        <span id="recipe-costo-unitario-display" class="font-bold text-indigo-600">$0.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Información -->
+                            <div class="bg-indigo-50 rounded-2xl p-4">
+                                <h3 class="font-semibold text-gray-700 mb-3">Información</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Rendimiento:</span>
+                                        <span id="recipe-yield-display" class="font-semibold">1,000</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Porciones:</span>
+                                        <span id="recipe-porciones-display" class="font-semibold">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón Guardar Receta -->
+                    <div class="mt-6 flex justify-end max-w-4xl mx-auto">
+                        <button id="btn-save-recipe" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors flex items-center gap-2">
+                            <span>💾</span> Guardar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contenido: Productos para la Venta (TODO EL CONTENIDO AQUÍ) -->
+                <div id="tab-content-productos-venta" class="tab-content">
+                    <!-- A. Cabecera de Configuración -->
+                    <div class="card-apple p-6 mb-6 max-w-4xl mx-auto">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">📝 Nombre y Margen Deseado</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nombre del Producto</label>
+                                <input type="text" id="product-name" placeholder="Ej: Hamburguesa Premium" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Margen Deseado %</label>
+                                <input type="number" id="desired-margin" value="70" min="5" max="95" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Margen de Error (Factor de Seguridad): <span id="margen-error-value" class="text-indigo-600 font-bold">5%</span></label>
+                            <input type="range" id="margen-error" min="0" max="20" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                            <p class="text-xs text-gray-500 mt-1">Ajustalo entre un 3% y 5% como contingencia de mermas volatiles en produccion o servicio</p>
+                        </div>
+                    </div>
+
+                    <!-- B. Listado de Insumos -->
+                    <div class="card-apple p-6 mb-6 max-w-4xl mx-auto">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-bold text-gray-900">📦 Insumos</h2>
+                            <button id="btn-add-insumo" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-semibold transition-colors flex items-center gap-2">
+                                <span>+</span> Añadir Insumo
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full" id="insumos-table">
+                                <thead>
+                                    <tr class="text-left text-sm text-gray-500 border-b border-gray-200">
+                                        <th class="pb-3 font-medium">Insumo</th>
+                                        <th class="pb-3 font-medium w-32">Cantidad (g/ml)</th>
+                                        <th class="pb-3 font-medium w-24">Unidad</th>
+                                        <th class="pb-3 font-medium w-32">Costo Unit.</th>
+                                        <th class="pb-3 font-medium w-32">Subtotal</th>
+                                        <th class="pb-3 w-12"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="insumos-body">
+                                    <tr class="insumo-default-row" style="border-bottom: 1px solid #f3f4f6;">
+                                        <td colspan="6" class="text-center" style="color: #9ca3af; padding-top: 4px; padding-bottom: 4px;">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4">💾 Los cambios se guardan automáticamente</p>
+                    </div>
+
+                    <!-- C. Dashboard de Márgenes -->
+                    <div class="card-apple p-6 max-w-4xl mx-auto border-2 border-indigo-200">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">📊 Rentabilidad</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div style="background-color: #f8fafc; border-radius: 16px; padding: 16px;">
+                                <h3 class="font-semibold text-gray-700 mb-3">Costos</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Costo Total Insumos (CTI):</span>
+                                        <span id="cti-display" class="font-semibold">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Margen de Error (<span id="margen-error-pct">5</span>%):</span>
+                                        <span id="margen-error-display" class="font-semibold text-amber-600">+$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between border-t border-gray-200 pt-2">
+                                        <span class="font-semibold text-gray-800">Costo Técnico:</span>
+                                        <span id="costo-tecnico-display" class="font-bold text-indigo-600">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between border-t border-gray-200 pt-2">
+                                        <span class="font-semibold text-gray-800">Utilidad:</span>
+                                        <span id="desired-margin-display" class="font-bold text-indigo-600">70%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-indigo-50 rounded-2xl p-4">
+                                <h3 class="font-semibold text-gray-700 mb-3">Precios Sugeridos</h3>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Precio sin Impoconsumo:</span>
+                                        <span id="precio-sin-impuesto-display" class="font-semibold">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between text-amber-600">
+                                        <span class="text-sm">Impuesto (8%):</span>
+                                        <span id="impuesto-display" class="font-semibold">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between border-t border-indigo-200 pt-2">
+                                        <span class="font-semibold text-gray-800">Precio de venta sugerido:</span>
+                                        <input type="number" id="precio-final-input" value="0" min="0" step="100" class="font-bold text-2xl text-indigo-600 text-right bg-transparent border-b-2 border-indigo-300 focus:border-indigo-600 focus:outline-none w-40" style="-moz-appearance:textfield;webkit-appearance:textfield;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MISO Insight -->
+                    <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-4 max-w-4xl mx-auto">
+                        <p class="text-amber-800 text-sm"><strong>💡 MISO Insight:</strong> El impuesto no es dinero del restaurante - es dinero que solo "pasa" por tu caja. Tu rentabilidad real se calcula sobre el precio sin Impoconsumo.</p>
+                    </div>
+
+                    <!-- Botón Exportar -->
+                    <div class="mt-6 flex justify-end max-w-4xl mx-auto">
+                        <button id="btn-guardar" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors flex items-center gap-2">
+                            <span>💾</span> Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-3 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <!-- All three logos -->
+            <div class="flex justify-center items-center gap-4 mb-3">
+                <img src="./assets/images/logo_miso.png" alt="MISO" class="w-20 h-auto">
+                <svg viewBox="0 0 100 100" width="32" height="32" xmlns="http://www.w3.org/2000/svg" class="iris-icon-vector">
+                  <defs>
+                    <mask id="ringMaskFooterFinal">
+                      <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="5.5" />
+                    </mask>
+                    <style>
+                      .spin-footer-final { transform-origin: 50px 50px; animation: rotate 18s linear infinite; }
+                    </style>
+                  </defs>
+                  <g mask="url(#ringMaskFooterFinal)" class="spin-footer-final">
+                    <foreignObject x="0" y="0" width="100" height="100">
+                      <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(from 200deg, #673AB7, #3F51B5, #00BCD4, #4CAF50, #FFC107, #FF9800, #9C27B0, #673AB7);"></div>
+                    </foreignObject>
+                  </g>
+                </svg>
+                <img src="./assets/images/logo_gijh.png" alt="GIJH" class="w-20 h-auto">
+            </div>
+            <p class="text-gray-400 mb-2">MISO - Management & Intelligence Systems Optimization</p>
+            <p class="text-gray-500 text-sm text-center mt-1">Powered by Iris</p>
+             <p class="text-gray-500 text-sm">Claridad absoluta sobre cada gasto/costo de tu negocio</p>
+            <p class="text-gray-600 text-xs mt-6">© 2026 MISO. Todos los derechos reservados.</p>
+            <p class="text-gray-500 text-xs mt-2">A Greenhole Insightful Joint Holdings project</p>
+        </div>
+    </footer>
+
+    <script src="./src/core/orchestrator.js"></script>
+
+
+    
+    <div id="misoQuizModal" class="hidden fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-xl rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
+            <div class="p-4 border-b border-gray-200 flex justify-between items-center bg-gradient-to-r from-indigo-50 to-purple-50">
+                <div>
+                    <h3 id="quizModuleTitle" class="text-xs font-bold text-indigo-600 uppercase tracking-widest">Módulo</h3>
+                    <p id="quizProgress" class="text-sm text-gray-600">Pregunta 1 de 30</p>
+                </div>
+                <button data-action="quiz:close" class="text-gray-400 hover:text-gray-600 text-2xl p-1 rounded-lg hover:bg-gray-100 transition-colors">&times;</button>
+            </div>
+            <div class="p-6">
+                <p id="quizEnunciado" class="text-base font-semibold text-gray-900 mb-6 leading-relaxed">Cargando desafío...</p>
+                <div id="quizOptionsGrid" class="grid grid-cols-1 gap-2"></div>
+                <div id="quizFeedback" class="hidden mt-6 p-4 rounded-2xl border-2 transition-all"></div>
+            </div>
+            <div class="p-4 border-t border-gray-200 bg-gray-50 flex justify-end gap-3">
+                <button id="btnVerificar" data-action="quiz:verify" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">Verificar</button>
+                <button id="btnSiguiente" data-action="quiz:next" class="hidden bg-green-600 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-green-700 transition-colors">Siguiente</button>
+            </div>
+        </div>
+    </div>
+    <!-- BCG Info Modal -->
+    <div id="bcg-modal" class="hidden fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden border border-gray-200 transition-all">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 id="bcg-modal-title" class="text-xl font-bold text-gray-900 mb-1"></h3>
+                        <p id="bcg-modal-subtitle" class="text-sm text-gray-500"></p>
+                    </div>
+                    <button data-action="bcg:close" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div id="bcg-modal-content" class="text-gray-700 leading-relaxed"></div>
+            </div>
+            <div class="p-4 border-t border-gray-200 bg-gray-50 flex justify-end">
+                <button data-action="bcg:close" class="bg-indigo-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-indigo-700 transition-colors">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MISO Auth Modal (Login/Registro) -->
+    <div id="misoAuthModal" class="hidden fixed inset-0 z-[1100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                <h3 id="authModalTitle" class="text-xl font-bold text-gray-900">Ingresar a MISO</h3>
+                <button data-action="modal:close-auth" class="text-gray-400 hover:text-gray-600 text-2xl p-1">&times;</button>
+            </div>
+            
+            <div class="p-8">
+                <form id="authForm" class="space-y-4">
+                    <!-- Campos de Registro (Ocultos inicialmente) -->
+                    <div id="registerFields" class="hidden space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Nombre o Razón Social</label>
+                            <input type="text" id="reg-nombre" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all" placeholder="Juan Pérez o Mi Restaurante S.A.S">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">CC / NIT</label>
+                                <input type="text" id="reg-id" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all" placeholder="123456...">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-1">WhatsApp</label>
+                                <input type="tel" id="reg-whatsapp" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all" placeholder="300...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campos Comunes (Login/Registro) -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Correo Electrónico</label>
+                        <input type="email" id="auth-email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all" placeholder="ejemplo@miso.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Contraseña</label>
+                        <input type="password" id="auth-password" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all" placeholder="••••••••">
+                    </div>
+
+                    <button type="submit" id="authSubmitBtn" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all active:scale-[0.98]">
+                        Iniciar Sesión
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <button id="toggleAuthMode" class="text-sm font-medium text-indigo-600 hover:underline">
+                        ¿No tienes cuenta? Regístrate aquí
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MISO Notification Modal (Custom Alert) -->
+    <div id="misoNotificationModal" class="hidden fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-sm rounded-3xl shadow-2xl overflow-hidden border border-gray-100 animate-spring-in">
+            <div class="p-8 text-center">
+                <div id="notification-icon" class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-2xl text-2xl">
+                    <!-- Icono dinámico -->
+                </div>
+                <h3 id="notification-title" class="text-xl font-bold text-gray-900 mb-2"></h3>
+                <p id="notification-message" class="text-gray-600 mb-6"></p>
+                <button onclick="document.getElementById('misoNotificationModal').classList.add('hidden')" class="w-full bg-indigo-600 text-white py-3 rounded-2xl font-bold hover:bg-indigo-700 transition-all active:scale-95 shadow-lg shadow-indigo-100">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
